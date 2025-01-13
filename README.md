@@ -6,4 +6,4 @@ Hi everyone this is my FitnessHero app which is aimed at improving fitness level
 - TypeScript
 - HTML
 - CSS
-- 
+- Angular
