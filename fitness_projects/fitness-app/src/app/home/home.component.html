@@ -1,0 +1,18 @@
+<div class="container">
+    <h1 class="main-heading">Workout App</h1>
+    <p class="instruction">Add workouts to your workout plan</p>
+  
+    <div class="input-section">
+      <input
+        type="text"
+        id="taskInput"
+        placeholder="Enter a workout"
+        class="task-input"
+        (input)="onInput($event)"
+      />
+      <button class="add-task-btn" (click)="addTask()">Add Workout</button>
+    </div>
+  
+    <h2 class="sub-heading">Workout Plan</h2>
+    <ul id="taskList" class="task-list"></ul>
+  </div>

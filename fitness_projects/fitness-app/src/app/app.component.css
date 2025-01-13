@@ -1,0 +1,96 @@
+/* General Styles */
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+}
+
+.header {
+  background-color: #2ecc71;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+/* Row Container */
+.row-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+/* Common Box Styles */
+.card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 23%; /* Ensures all cards are equally spaced */
+  min-height: 250px;
+  text-align: center;
+}
+
+.card h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.card p {
+  font-size: 16px;
+  color: #555;
+}
+
+.card button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background-color: #0056b3;
+}
+
+/* Specific Adjustments for Input Section */
+.input-card input,
+.input-card select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.input-card .add-btn {
+  background-color: #e74c3c;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.input-card .add-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Analytics and History */
+.analytics-card p,
+.history-card ul {
+  text-align: left;
+}
+
