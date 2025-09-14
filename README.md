@@ -66,3 +66,5 @@ Install required software:
 ```xml
 Microsoft.AspNetCore.OpenApi (9.0.0)
 ```
+
+<img width="1502" height="767" alt="image" src="https://github.com/user-attachments/assets/86a62bec-f84e-45c9-81f5-fc0b219dfa3a" />
