@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { jsPDF } from 'jspdf';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
@@ -137,6 +140,19 @@ export class AppComponent {
 
   getCategoryCount(category: string) {
     return this.tasks.filter((task) => task.category === category).length;
+  }
+
+  getCategoryIcon(category: string): string {
+    switch (category) {
+      case 'Cardio':
+        return 'directions_run';
+      case 'Strength':
+        return 'fitness_center';
+      case 'Flexibility':
+        return 'self_improvement';
+      default:
+        return 'fitness_center';
+    }
   }
 
   // Generate PDF for workout statistics
