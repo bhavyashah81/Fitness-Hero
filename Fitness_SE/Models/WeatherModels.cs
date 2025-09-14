@@ -35,9 +35,6 @@ namespace FitnessAppAPI.Models
         public WeatherForecast()
         {
             Date = DateOnly.FromDateTime(DateTime.Now);
-            Humidity = Random.Shared.NextDouble() * 100;
-            WindSpeed = Random.Shared.NextDouble() * 30;
-            Pressure = 1000 + Random.Shared.NextDouble() * 50;
         }
 
         public WeatherForecast(DateOnly date, int temperatureC, string? summary) : this()
@@ -45,43 +42,6 @@ namespace FitnessAppAPI.Models
             Date = date;
             TemperatureC = temperatureC;
             Summary = summary;
-        }
-
-        /// <summary>
-        /// Determines if the weather is suitable for outdoor activities
-        /// </summary>
-        public bool IsGoodForOutdoorWorkout()
-        {
-            return TemperatureC >= 5 && TemperatureC <= 35 && WindSpeed < 20;
-        }
-
-        /// <summary>
-        /// Gets weather severity level
-        /// </summary>
-        public WeatherSeverity GetSeverityLevel()
-        {
-            if (TemperatureC < -10 || TemperatureC > 40) return WeatherSeverity.Extreme;
-            if (TemperatureC < 0 || TemperatureC > 35) return WeatherSeverity.Harsh;
-            if (WindSpeed > 25) return WeatherSeverity.Harsh;
-            return WeatherSeverity.Mild;
-        }
-
-        /// <summary>
-        /// Calculates heat index for safety purposes
-        /// </summary>
-        public double CalculateHeatIndex()
-        {
-            if (TemperatureF < 80) return TemperatureF;
-            
-            double hif = TemperatureF;
-            double rh = Humidity;
-            
-            double hi = -42.379 + 2.04901523 * hif + 10.14333127 * rh
-                       - 0.22475541 * hif * rh - 0.00683783 * hif * hif
-                       - 0.05481717 * rh * rh + 0.00122874 * hif * hif * rh
-                       + 0.00085282 * hif * rh * rh - 0.00000199 * hif * hif * rh * rh;
-            
-            return Math.Round(hi, 1);
         }
     }
 
