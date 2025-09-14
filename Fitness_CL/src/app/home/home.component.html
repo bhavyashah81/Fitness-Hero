@@ -1,157 +1,272 @@
-<div class="app-container">
-  <!-- Modern Header -->
-  <mat-toolbar color="primary" class="app-header">
-    <mat-icon class="header-icon">fitness_center</mat-icon>
-    <span class="app-title">Fitness Hero</span>
-    <span class="spacer"></span>
-    <button mat-icon-button>
-      <mat-icon>account_circle</mat-icon>
-    </button>
-  </mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <!-- Sidebar -->
+  <mat-sidenav #sidenav mode="over" [opened]="sidenavOpened" class="sidenav">
+    <div class="sidenav-header">
+      <div class="user-avatar">{{ userInfo.avatar }}</div>
+      <div class="user-info">
+        <h3>{{ userInfo.name }}</h3>
+        <span class="user-level">{{ userInfo.level }}</span>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let item of navigationItems" (click)="navigateTo(item)" [class.active]="item.active">
+        <mat-icon>{{ item.icon }}</mat-icon>
+        <span>{{ item.name }}</span>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
 
   <!-- Main Content -->
-  <div class="content-container">
-    <div class="cards-grid">
+  <mat-sidenav-content class="main-content">
+    <!-- Header -->
+    <mat-toolbar class="header-toolbar">
+      <button mat-icon-button (click)="toggleSidenav()" class="menu-button">
+        <mat-icon>menu</mat-icon>
+      </button>
       
-      <!-- Motivational Quote Card -->
-      <mat-card class="quote-card" appearance="outlined">
-        <mat-card-header>
-          <div mat-card-avatar class="quote-avatar">
-            <mat-icon>format_quote</mat-icon>
-          </div>
-          <mat-card-title>Daily Motivation</mat-card-title>
-          <mat-card-subtitle>Stay inspired</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <p class="quote-text">{{ motivationalQuote }}</p>
-        </mat-card-content>
-        <mat-card-actions align="end">
-          <button mat-raised-button color="accent" (click)="generateRandomQuote()">
-            <mat-icon>refresh</mat-icon>
-            New Quote
+      <span class="app-title">
+        <mat-icon class="app-icon">fitness_center</mat-icon>
+        Fitness Hero
+      </span>
+      
+      <span class="spacer"></span>
+      
+      <div class="header-actions">
+        <button mat-icon-button color="accent" (click)="quickStartWorkout()" class="quick-btn">
+          <mat-icon>play_arrow</mat-icon>
+        </button>
+        
+        <button mat-icon-button (click)="openNotifications()">
+          <mat-icon matBadge="{{ userInfo.notifications }}" matBadgeColor="warn" matBadgeSize="small">notifications</mat-icon>
+        </button>
+        
+        <button mat-icon-button [matMenuTriggerFor]="userMenu">
+          <div class="user-avatar-small">{{ userInfo.avatar }}</div>
+        </button>
+        
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item (click)="openUserProfile()">
+            <mat-icon>person</mat-icon>
+            <span>Profile</span>
           </button>
-        </mat-card-actions>
-      </mat-card>
+          <button mat-menu-item (click)="openSettings()">
+            <mat-icon>settings</mat-icon>
+            <span>Settings</span>
+          </button>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
 
-      <!-- Add Workout Card -->
-      <mat-card class="input-card" appearance="outlined">
-        <mat-card-header>
-          <div mat-card-avatar class="input-avatar">
-            <mat-icon>add_circle</mat-icon>
-          </div>
-          <mat-card-title>Add Workout</mat-card-title>
-          <mat-card-subtitle>Log your exercise</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content class="input-form">
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Workout Name</mat-label>
-            <input matInput id="taskInput" placeholder="e.g., Morning Run">
-            <mat-icon matSuffix>fitness_center</mat-icon>
-          </mat-form-field>
+    <!-- Dashboard Content -->
+    <div class="dashboard-container">
+      <div class="cards-grid">
+        
+        <!-- Motivational Quote Card -->
+        <mat-card class="quote-card" appearance="outlined">
+          <mat-card-header>
+            <div mat-card-avatar class="quote-avatar">
+              <mat-icon>format_quote</mat-icon>
+            </div>
+            <mat-card-title>Daily Motivation</mat-card-title>
+            <mat-card-subtitle>Keep pushing forward</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p class="quote-text">"{{ motivationalQuote }}"</p>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-raised-button color="primary" (click)="generateRandomQuote()">
+              <mat-icon>refresh</mat-icon>
+              New Quote
+            </button>
+          </mat-card-actions>
+        </mat-card>
 
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Category</mat-label>
-            <mat-select id="categoryInput">
-              <mat-option value="Cardio">
-                <mat-icon>directions_run</mat-icon>
-                Cardio
-              </mat-option>
-              <mat-option value="Strength">
+        <!-- Add Workout Card -->
+        <mat-card class="workout-form-card" appearance="outlined">
+          <mat-card-header>
+            <div mat-card-avatar class="workout-avatar">
+              <mat-icon>add_circle</mat-icon>
+            </div>
+            <mat-card-title>Add Workout</mat-card-title>
+            <mat-card-subtitle>Log your exercise</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="workout-form">
+              <mat-form-field appearance="outline">
+                <mat-label>Workout Name</mat-label>
+                <input matInput name="workoutName" [(ngModel)]="workoutName" placeholder="e.g., Push-ups">
+              </mat-form-field>
+              
+              <mat-form-field appearance="outline">
+                <mat-label>Category</mat-label>
+                <mat-select name="workoutCategory" [(ngModel)]="workoutCategory">
+                  <mat-option value="Cardio">Cardio</mat-option>
+                  <mat-option value="Strength">Strength</mat-option>
+                  <mat-option value="Flexibility">Flexibility</mat-option>
+                  <mat-option value="Sports">Sports</mat-option>
+                </mat-select>
+              </mat-form-field>
+              
+              <mat-form-field appearance="outline">
+                <mat-label>Duration (minutes)</mat-label>
+                <input matInput type="number" name="workoutDuration" [(ngModel)]="workoutDuration" placeholder="30">
+              </mat-form-field>
+            </div>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-raised-button color="accent" (click)="addWorkout()">
+              <mat-icon>add</mat-icon>
+              Add Workout
+            </button>
+          </mat-card-actions>
+        </mat-card>
+
+        <!-- Workout History Card -->
+        <mat-card class="history-card" appearance="outlined">
+          <mat-card-header>
+            <div mat-card-avatar class="history-avatar">
+              <mat-icon>history</mat-icon>
+            </div>
+            <mat-card-title>Recent Workouts</mat-card-title>
+            <mat-card-subtitle>Your activity log</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="workout-list">
+              <div *ngIf="tasks.length === 0" class="empty-state">
                 <mat-icon>fitness_center</mat-icon>
-                Strength
-              </mat-option>
-              <mat-option value="Flexibility">
-                <mat-icon>self_improvement</mat-icon>
-                Flexibility
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Duration (minutes)</mat-label>
-            <input matInput id="durationInput" type="number" placeholder="30">
-            <mat-icon matSuffix>timer</mat-icon>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Date</mat-label>
-            <input matInput id="dateInput" type="date">
-            <mat-icon matSuffix>calendar_today</mat-icon>
-          </mat-form-field>
-        </mat-card-content>
-        <mat-card-actions align="end">
-          <button mat-raised-button color="primary" (click)="addWorkout()">
-            <mat-icon>add</mat-icon>
-            Add Workout
-          </button>
-        </mat-card-actions>
-      </mat-card>
-
-      <!-- Workout History Card -->
-      <mat-card class="history-card" appearance="outlined">
-        <mat-card-header>
-          <div mat-card-avatar class="history-avatar">
-            <mat-icon>history</mat-icon>
-          </div>
-          <mat-card-title>Recent Workouts</mat-card-title>
-          <mat-card-subtitle>Your activity log</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <div class="history-list" id="historyList">
-            <div class="empty-state" *ngIf="tasks.length === 0">
-              <mat-icon class="empty-icon">event_note</mat-icon>
-              <p>No workouts logged yet</p>
-              <small>Add your first workout to get started!</small>
+                <p>No workouts yet. Add your first workout!</p>
+              </div>
+              <mat-list *ngIf="tasks.length > 0">
+                <mat-list-item *ngFor="let task of tasks.slice(-3)">
+                  <mat-icon matListItemIcon>done</mat-icon>
+                  <div matListItemTitle>{{ task.name }}</div>
+                  <div matListItemLine>{{ task.category }} • {{ task.duration }} min • {{ task.date }}</div>
+                </mat-list-item>
+              </mat-list>
             </div>
-            <mat-list *ngIf="tasks.length > 0">
-              <mat-list-item *ngFor="let task of tasks.slice(-5)">
-                <mat-icon matListItemIcon [ngClass]="'category-' + task.category.toLowerCase()">
-                  {{ getCategoryIcon(task.category) }}
-                </mat-icon>
-                <div matListItemTitle>{{ task.name }}</div>
-                <div matListItemLine>{{ task.duration }}min • {{ task.date }}</div>
-              </mat-list-item>
-            </mat-list>
-          </div>
-        </mat-card-content>
-      </mat-card>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-raised-button color="primary" (click)="viewAllWorkouts()">
+              <mat-icon>list</mat-icon>
+              View All
+            </button>
+          </mat-card-actions>
+        </mat-card>
 
-      <!-- Analytics Card -->
-      <mat-card class="analytics-card" appearance="outlined">
-        <mat-card-header>
-          <div mat-card-avatar class="analytics-avatar">
-            <mat-icon>analytics</mat-icon>
-          </div>
-          <mat-card-title>Workout Stats</mat-card-title>
-          <mat-card-subtitle>Your progress</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <div class="stats-grid">
-            <div class="stat-item cardio">
-              <mat-icon>directions_run</mat-icon>
-              <div class="stat-number">{{ getCategoryCount('Cardio') }}</div>
-              <div class="stat-label">Cardio</div>
+        <!-- Workout Stats Card -->
+        <mat-card class="stats-card" appearance="outlined">
+          <mat-card-header>
+            <div mat-card-avatar class="stats-avatar">
+              <mat-icon>analytics</mat-icon>
             </div>
-            <div class="stat-item strength">
-              <mat-icon>fitness_center</mat-icon>
-              <div class="stat-number">{{ getCategoryCount('Strength') }}</div>
-              <div class="stat-label">Strength</div>
+            <mat-card-title>Workout Stats</mat-card-title>
+            <mat-card-subtitle>Your progress</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <div class="stat-number">{{ getWeeklyWorkouts() }}</div>
+                <div class="stat-label">This Week</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">{{ getTotalMinutes() }}</div>
+                <div class="stat-label">Total Minutes</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">{{ getStreak() }}</div>
+                <div class="stat-label">Day Streak</div>
+              </div>
             </div>
-            <div class="stat-item flexibility">
-              <mat-icon>self_improvement</mat-icon>
-              <div class="stat-number">{{ getCategoryCount('Flexibility') }}</div>
-              <div class="stat-label">Flexibility</div>
+            <div class="progress-section">
+              <span class="progress-label">Weekly Goal Progress</span>
+              <mat-progress-bar mode="determinate" [value]="getWeeklyProgress()" color="accent"></mat-progress-bar>
+              <span class="progress-text">{{ getWeeklyProgress() }}% Complete</span>
             </div>
-          </div>
-        </mat-card-content>
-        <mat-card-actions align="end">
-          <button mat-raised-button color="warn" (click)="generatePDF()">
-            <mat-icon>picture_as_pdf</mat-icon>
-            Export PDF
-          </button>
-        </mat-card-actions>
-      </mat-card>
+          </mat-card-content>
+          <mat-card-actions align="end" class="card-actions-spaced">
+            <button mat-raised-button color="primary" (click)="viewDetailedStats()">
+              <mat-icon>bar_chart</mat-icon>
+              View Details
+            </button>
+            <button mat-raised-button color="warn" (click)="generatePDF()">
+              <mat-icon>download</mat-icon>
+              PDF Report
+            </button>
+          </mat-card-actions>
+        </mat-card>
 
+        <!-- Progress Charts Card -->
+        <mat-card class="progress-card" appearance="outlined">
+          <mat-card-header>
+            <div mat-card-avatar class="progress-avatar">
+              <mat-icon>trending_up</mat-icon>
+            </div>
+            <mat-card-title>Progress Charts</mat-card-title>
+            <mat-card-subtitle>Weekly overview</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="progress-summary">
+              <div class="summary-item">
+                <mat-icon>fitness_center</mat-icon>
+                <span>{{ getWeeklyWorkouts() }} workouts this week</span>
+              </div>
+              <div class="summary-item">
+                <mat-icon>timer</mat-icon>
+                <span>{{ getTotalMinutes() }} total minutes</span>
+              </div>
+              <div class="summary-item">
+                <mat-icon>local_fire_department</mat-icon>
+                <span>{{ getStreak() }} day streak</span>
+                <mat-chip color="accent" selected>Live</mat-chip>
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-raised-button color="primary" (click)="viewDetailedStats()">
+              <mat-icon>bar_chart</mat-icon>
+              View Details
+            </button>
+          </mat-card-actions>
+        </mat-card>
+
+        <!-- Goals & Achievements Card -->
+        <mat-card class="goals-card" appearance="outlined">
+          <mat-card-header>
+            <div mat-card-avatar class="goals-avatar">
+              <mat-icon>emoji_events</mat-icon>
+            </div>
+            <mat-card-title>Goals & Achievements</mat-card-title>
+            <mat-card-subtitle>Your milestones</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="achievements-list">
+              <div *ngIf="getRecentAchievements().length === 0" class="empty-achievements">
+                <mat-icon>emoji_events</mat-icon>
+                <p>Complete workouts to unlock achievements!</p>
+              </div>
+              <div *ngFor="let achievement of getRecentAchievements()" class="achievement-item">
+                <mat-icon [color]="'accent'">{{ achievement.icon }}</mat-icon>
+                <div class="achievement-info">
+                  <span class="achievement-name">{{ achievement.name }}</span>
+                  <span class="achievement-date">{{ achievement.date }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="current-goal">
+              <h4>Current Goal</h4>
+              <div class="goal-desc">{{ getCurrentGoal() }}</div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-raised-button color="accent" (click)="setNewGoal()">
+              <mat-icon>add_task</mat-icon>
+              Set Goal
+            </button>
+          </mat-card-actions>
+        </mat-card>
+
+      </div>
     </div>
-  </div>
-</div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
