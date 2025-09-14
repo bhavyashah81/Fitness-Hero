@@ -1,24 +1,68 @@
-# FitnessHero
-Hi everyone this is my FitnessHero app which is aimed at improving fitness levels for everyone! 
+# Fitness Hero
+A workout tracking application with motivational quotes, analytics, and PDF reporting capabilities, built with Angular 19 and .NET 9.0.
 
-# Technologies and Languages Used
-- C#
-- TypeScript
-- HTML
-- CSS
-- Angular
+## Features
+- **Workout Logging**: Add workouts with categories (Cardio, Strength, Flexibility), duration, and dates
+- **Motivational Quotes**: Built-in collection of inspiring fitness quotes with random quote generation
+- **Workout History**: Complete log of all completed workouts with detailed tracking
+- **Workout Analytics**: Real-time statistics showing workout counts by category (Cardio, Strength, Flexibility)
+- **PDF Export**: Generate and download workout statistics as PDF reports using jsPDF integration
+- **External Quote API**: Integration with RealInspire API for additional motivational content
+- **Responsive Design**: Clean, card-based UI that works across all device sizes
+- **Navigation**: Multi-page application with Home and About sections using Angular Router
+- **Weather Data**: Backend provides sample weather forecast data
 
-# Features
-Workout Planning: Add workouts with details like name, category, duration, and date to organize your fitness routine effectively.
+## Technologies and Languages Used
+**Frontend:**
+- Languages: TypeScript, HTML, CSS
+- Framework: Angular 19
+- UI Components: Angular Material
+- Additional Libraries: jsPDF, RxJS, Express
 
-Motivational Quotes: Stay inspired with random motivational quotes that update at the click of a button.
+**Backend:**
+- Language: C#
+- Framework: .NET 9.0 Minimal API
+- Documentation: OpenAPI/Swagger integration
 
-Workout Plan Tracker: View all planned workouts in an organized list, complete with categories and durations.
+**APIs:**
+- RealInspire API (motivational quotes)
+- Weather forecast endpoint (sample data)
 
-Weekly Goal Setting: Set a weekly workout goal in minutes and track your progress toward achieving it.
+## How to Run the Project
+```bash
+./start-dev.sh
+```
 
-Workout Analytics: Get insights into your fitness routine with analytics showing the number of workouts completed in each category: Cardio, Strength, and Flexibility.
+This will:
+- Check for Node.js and .NET SDK prerequisites  
+- Install Angular dependencies automatically
+- Launch the .NET backend API on http://localhost:5001
+- Launch the Angular frontend on http://localhost:4200
+- Enable workout logging and tracking functionality
+- Provide access to motivational quotes and analytics
+- Support PDF generation for workout statistics
+- Serve sample weather forecast data
 
-Workout History: Keep track of past workouts, including completed and removed ones, for a clear view of your fitness journey.
+## Prerequisites
+Install required software:
+- **Node.js** (v18 or higher) - [Download here](https://nodejs.org/)
+- **.NET SDK** (v9.0 or higher) - [Download here](https://dotnet.microsoft.com/download)
 
-PDF Export: Share or save your progress by exporting your workout history and analytics as a professional PDF file.
+## Dependencies
+
+**Frontend Dependencies:**
+```json
+"@angular/core": "^19.0.0"
+"@angular/material": "^19.0.5"
+"@angular/forms": "^19.0.6"
+"@angular/router": "^19.0.0"
+"@angular/ssr": "^19.0.7"
+"jspdf": "^2.5.2"
+"rxjs": "~7.8.0"
+"express": "^4.18.2"
+```
+
+**Backend Dependencies:**
+```xml
+Microsoft.AspNetCore.OpenApi (9.0.0)
+```
