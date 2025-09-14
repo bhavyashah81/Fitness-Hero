@@ -36,8 +36,8 @@ A workout tracking application with motivational quotes, analytics, and PDF repo
 This will:
 - Check for Node.js and .NET SDK prerequisites  
 - Install Angular dependencies automatically
-- Launch the .NET backend API on http://localhost:5001
-- Launch the Angular frontend on http://localhost:4200
+- Launch the .NET backend API
+- Launch the Angular frontend
 - Enable workout logging and tracking functionality
 - Provide access to motivational quotes and analytics
 - Support PDF generation for workout statistics
