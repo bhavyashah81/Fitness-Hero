@@ -86,20 +86,6 @@ namespace FitnessAppAPI.Services
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public double AverageTemperature { get; set; }
-        public int MinTemperature { get; set; }
-        public int MaxTemperature { get; set; }
         public int TotalDays { get; set; }
-        public int GoodWorkoutDays { get; set; }
-        public int RainyDays { get; set; }
-        public int SunnyDays { get; set; }
-        
-        public double WorkoutSuitabilityPercentage => 
-            TotalDays > 0 ? (double)GoodWorkoutDays / TotalDays * 100 : 0;
-        
-        public string GetWeatherSummary()
-        {
-            return $"Over {TotalDays} days: Avg temp {AverageTemperature:F1}°C, " +
-                   $"{GoodWorkoutDays} good workout days ({WorkoutSuitabilityPercentage:F1}%)";
-        }
     }
 }

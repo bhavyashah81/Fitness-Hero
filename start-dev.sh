@@ -40,8 +40,8 @@ FRONTEND_PID=$!
 echo ""
 echo "✅ Fitness Hero is starting up!"
 echo "🌐 Frontend: http://localhost:4200"
-echo "🔧 Backend API: http://localhost:5002"
-echo "📊 Weather API: http://localhost:5002/weatherforecast"
+echo "🔧 Backend API: http://localhost:5001"
+echo "📊 Weather API: http://localhost:5001/weatherforecast"
 echo ""
 echo "Press Ctrl+C to stop all services..."
 
