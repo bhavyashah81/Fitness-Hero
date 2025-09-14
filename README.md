@@ -45,8 +45,8 @@ This will:
 
 ## Prerequisites
 Install required software:
-- **Node.js** (v18 or higher) - [Download here](https://nodejs.org/)
-- **.NET SDK** (v9.0 or higher) - [Download here](https://dotnet.microsoft.com/download)
+- **Node.js** (v18 or higher) 
+- **.NET SDK** (v9.0 or higher)
 
 ## Dependencies
 
