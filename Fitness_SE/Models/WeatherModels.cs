@@ -64,9 +64,27 @@ namespace FitnessAppAPI.Models
         public int UvIndex { get; set; }
         public double Visibility { get; set; }
         public int CloudCover { get; set; }
+        public double DewPoint { get; set; }
+        public int FeelsLike { get; set; }
+        public string WeatherCondition { get; set; } = string.Empty;
+        public bool IsRaining { get; set; }
+        public bool IsSnowing { get; set; }
 
         public bool IsIdealForFitness() => true;
         public string GetRecommendedWorkoutType() => "Good for workout";
+        
+        public string GetComfortLevel()
+        {
+            if (FeelsLike < 10) return "Cold";
+            if (FeelsLike < 20) return "Cool";
+            if (FeelsLike < 30) return "Comfortable";
+            return "Hot";
+        }
+        
+        public bool IsSafeForOutdoorActivity()
+        {
+            return !IsRaining && !IsSnowing && UvIndex < 10;
+        }
     }
 
     /// <summary>
