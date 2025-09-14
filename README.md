@@ -1,5 +1,5 @@
 # Fitness Hero
-A workout tracking application with motivational quotes, analytics, and PDF reporting capabilities, built with Angular 19 and .NET 9.0.
+A workout tracking application with motivational quotes, analytics, and PDF reporting capabilities
 
 ## Features
 - **Workout Logging**: Add workouts with categories (Cardio, Strength, Flexibility), duration, and dates

@@ -1,25 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bshah\\fitness_projects\\FitnessAppAPI\\FitnessAppAPI.csproj": {}
+    "/Users/bshah/Fitness-Hero/Fitness_SE/FitnessAppAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bshah\\fitness_projects\\FitnessAppAPI\\FitnessAppAPI.csproj": {
+    "/Users/bshah/Fitness-Hero/Fitness_SE/FitnessAppAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bshah\\fitness_projects\\FitnessAppAPI\\FitnessAppAPI.csproj",
+        "projectUniqueName": "/Users/bshah/Fitness-Hero/Fitness_SE/FitnessAppAPI.csproj",
         "projectName": "FitnessAppAPI",
-        "projectPath": "C:\\Users\\bshah\\fitness_projects\\FitnessAppAPI\\FitnessAppAPI.csproj",
-        "packagesPath": "C:\\Users\\bshah\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bshah\\fitness_projects\\FitnessAppAPI\\obj\\",
+        "projectPath": "/Users/bshah/Fitness-Hero/Fitness_SE/FitnessAppAPI.csproj",
+        "packagesPath": "/Users/bshah/.nuget/packages/",
+        "outputPath": "/Users/bshah/Fitness-Hero/Fitness_SE/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\bshah\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/bshah/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "/opt/homebrew/Cellar/dotnet/9.0.8/libexec/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -82,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet/9.0.8/libexec/sdk/9.0.109/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

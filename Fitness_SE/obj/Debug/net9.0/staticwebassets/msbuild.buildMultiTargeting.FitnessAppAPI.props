@@ -1,3 +1,3 @@
 ﻿<Project>
-  <Import Project="..\build\FitnessAppAPI.props" />
+  <Import Project="../build/FitnessAppAPI.props" />
 </Project>
